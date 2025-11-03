@@ -19,6 +19,9 @@ SRCS = ft_bzero.c \
 		ft_strncmp.c \
 		ft_memchr.c \
 		ft_memcmp.c \
+		ft_strnstr.c \
+		ft_atoi.c \
+		ft_calloc.c \
 		ft_strlcpy.c
 
 OBJS = $(SRCS:.c=.o)

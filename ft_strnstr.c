@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asadqi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/15 15:00:46 by asadqi            #+#    #+#             */
-/*   Updated: 2025/09/17 13:48:58 by asadqi           ###   ########.fr       */
+/*   Created: 2025/09/17 12:21:48 by asadqi            #+#    #+#             */
+/*   Updated: 2025/09/22 14:21:59 by asadqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "stdio.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	unsigned char	*a;
-	unsigned char	*b;
 	unsigned int	i;
+	size_t			k;
 
-	if (n == 0)
-		return (0);
+	if (!*little)
+		return ((char *)big);
 	i = 0;
-	a = (unsigned char *) s1;
-	b = (unsigned char *) s2;
-	while (a[i] == b[i] && i < n - 1)
-		i++;
-	return (a[i] - b[i]);
+	while (big && big[i] && i < len)
+	{
+		k = 0;
+		while (big[i + k] == little[k] && i + k < len)
+		{
+			if (little[k + 1] == '\0')
+				return ((char *)big + i);
+			k++ ;
+		}
+		i++ ;
+	}
+	return (NULL);
 }
