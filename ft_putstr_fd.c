@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asadqi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/06 13:32:18 by asadqi            #+#    #+#             */
-/*   Updated: 2025/12/14 18:36:50 by asadqi           ###   ########.fr       */
+/*   Created: 2025/12/14 18:24:47 by asadqi            #+#    #+#             */
+/*   Updated: 2025/12/14 18:40:01 by asadqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	ft_putstr_fd(char *s, int fd)
 {
-	char	*temp;
-
-	if ((size * nmemb) > 2147483647)
-		return (NULL);
-	temp = (char *)malloc(nmemb * size);
-	if (!temp)
-		return (NULL);
-	ft_bzero(temp, nmemb * size);
-	return (temp);
+	if (!s)
+		return ;
+	write(fd, s, ft_strlen(s));
 }
