@@ -6,7 +6,7 @@
 /*   By: asadqi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 16:43:12 by asadqi            #+#    #+#             */
-/*   Updated: 2025/12/14 18:40:38 by asadqi           ###   ########.fr       */
+/*   Updated: 2025/12/15 18:16:28 by asadqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strdup(const char *s)
 	if (!dup)
 		return (NULL);
 	i = 0;
-	while (s[i])
+	while (i < ft_strlen(s))
 	{
 		dup[i] = s[i];
 		i++;

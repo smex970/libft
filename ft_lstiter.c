@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asadqi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/15 13:54:04 by asadqi            #+#    #+#             */
-/*   Updated: 2025/12/15 18:26:39 by asadqi           ###   ########.fr       */
+/*   Created: 2025/12/15 17:50:56 by asadqi            #+#    #+#             */
+/*   Updated: 2025/12/15 17:52:34 by asadqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	ft_lstiter(t_list *lst, void (*f) (void *))
 {
-	unsigned int	i;
-
-	i = 0;
-	if (!s1)
+	if (!lst || !f)
+		return ;
+	while (lst)
 	{
-		if (!s2)
-			return (0);
-		return (-(unsigned char)s2[i]);
+		f(lst->content);
+		lst = lst->next;
 	}
-	else if (!s2)
-		return ((unsigned char)s1[i]);
-	while (n > i && s1[i] && s2[i]
-		&& (unsigned char)s1[i] == (unsigned char)s2[i])
-		i++ ;
-	if (i < n)
-		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-	return (0);
 }

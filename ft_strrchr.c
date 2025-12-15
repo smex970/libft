@@ -6,7 +6,7 @@
 /*   By: asadqi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 13:36:01 by asadqi            #+#    #+#             */
-/*   Updated: 2025/09/15 13:49:31 by asadqi           ###   ########.fr       */
+/*   Updated: 2025/12/15 20:05:04 by asadqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,10 @@ char	*ft_strrchr(const char *s, int c)
 		return ((char *)s + p);
 	if (1 <= c && c <= 127)
 		return (NULL);
-	return ((char *)s + i);
+	if ((unsigned char)c == '\0')
+		return ((char *)(s + i));
+	if (p != -1)
+		return ((char *)(s + p));
+	else
+		return (NULL);
 }

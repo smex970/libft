@@ -6,66 +6,84 @@
 /*   By: asadqi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 19:07:51 by asadqi            #+#    #+#             */
-/*   Updated: 2025/12/14 18:42:06 by asadqi           ###   ########.fr       */
+/*   Updated: 2025/12/15 18:37:34 by asadqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strcmp(char const c, char const *set)
+size_t	ft_start(char const *s, char const *set)
 {
-	unsigned int	i;
+	size_t	i;
+	int		j;
+	int		index;
 
 	i = 0;
-	while (set[i])
+	while (s[i])
 	{
-		if (c == set[i])
-			return (1);
+		j = 0;
+		index = 0;
+		while (set[j])
+		{
+			if (s[i] == set[j])
+				index = 1;
+			j++;
+		}
+		if (!index)
+			break ;
 		i++;
 	}
-	return (0);
+	return (i);
 }
 
-int	new_len(char const *s1, char const *set)
+size_t	ft_end(char const *s, char const *set)
 {
-	size_t			new_len;
-	unsigned int	i;
+	size_t	len;
+	size_t	i;
+	int		index;
 
-	new_len = ft_strlen(s1);
-	i = 0;
-	while (s1[i])
+	len = ft_strlen(s) - 1;
+	while (len > 0)
 	{
-		if (ft_strcmp(s1[i], set) == 1)
-			new_len--;
-		i++;
+		i = 0;
+		index = 0;
+		while (set[i])
+		{
+			if (s[len] == set[i])
+				index = 1;
+			i++;
+		}
+		if (!index)
+			break ;
+		len--;
 	}
-	return (new_len);
+	return (len);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	char			*trim;
-	unsigned int	i;
-	unsigned int	j;
+	size_t	start;
+	size_t	end;
+	size_t	i;
+	char	*dest;
 
+	i = 0;
 	if (!s1)
 		return (NULL);
-	if (!set)
+	if (!set || !s1[0])
 		return (ft_strdup(s1));
-	i = 0;
-	j = 0;
-	trim = malloc(sizeof(char) * (new_len(s1, set) + 1));
-	if (!trim)
+	start = ft_start(s1, set);
+	end = ft_end(s1, set);
+	if (start > end)
+		return (ft_strdup(""));
+	dest = malloc(sizeof(char) * (end - start + 2));
+	if (!dest)
 		return (NULL);
-	while (s1[i])
+	while (start + i <= end)
 	{
-		if (ft_strcmp(s1[i], set) == 0)
-		{
-			trim[j] = s1[i];
-			j++;
-		}
+		dest[i] = s1[start + i];
 		i++;
 	}
-	trim[j] = '\0';
-	return (trim);
+	dest[i] = '\0';
+	return (dest);
 }
