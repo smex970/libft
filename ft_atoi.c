@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadqi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: asadqi <asadqi@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 14:24:46 by asadqi            #+#    #+#             */
-/*   Updated: 2025/12/15 19:09:46 by asadqi           ###   ########.fr       */
+/*   Updated: 2025/12/17 11:12:13 by asadqi           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ int	ft_atoi(const char *nptr)
 	{
 		nbr *= 10;
 		nbr = nbr + (nptr[i] - 48);
-		if ((nbr > LONG_MAX || nbr < INT_MIN) && nbr != 2147483648)
-			return (0);
 		i++ ;
 	}
-	return (nbr * s);
+	return ((int)(nbr * s));
 }
