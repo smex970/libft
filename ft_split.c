@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadqi <asadqi@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: asadqi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 20:04:55 by asadqi            #+#    #+#             */
-/*   Updated: 2025/12/17 11:04:54 by asadqi           ###   ########lyon.fr   */
+/*   Updated: 2025/12/17 12:16:42 by asadqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	count_words(char const *s, char c)
+static int	count_words(char const *s, char c)
 {
 	int	index;
 	int	len;
@@ -33,62 +33,47 @@ int	count_words(char const *s, char c)
 	return (len);
 }
 
-char	*ft_dup(char *s, int start, int end)
+static int	next_len(const char *str, char c)
 {
-	int		i;
-	char	*dest;
+	size_t	count;
 
-	i = 0;
-	if (!s)
-		return (NULL);
-	dest = malloc(sizeof(char) * (end - start + 1));
-	if (!dest)
-		return (NULL);
-	while (start < end)
-		dest[i++] = s[start++];
-	dest[i] = '\0';
-	return (dest);
+	count = 0;
+	while (str[count] && str[count] != c)
+		count++;
+	return (count);
 }
 
-char	**free_split(char **split, int j)
+static char	**free_split(char **split, int j)
 {
-	int	i;
-
-	i = -1;
-	while (i < j)
-	{
-		free(split[i]);
-		i++;
-	}
+	while (0 < j)
+		free(split[--j]);
 	free(split);
 	return (NULL);
 }
 
 char	**ft_split(char const *s, char c)
 {
+	int		len;
 	size_t	i;
-	int		j;
-	int		index;
 	char	**split;
 
-	i = -1;
-	index = -1;
-	j = 0;
-	split = malloc(sizeof(char *) * (count_words(s, c) + 1));
+	i = 0;
+	split = ft_calloc((count_words(s, c) + 1), sizeof(char *));
 	if (!split)
 		return (NULL);
-	while ((size_t)ft_strlen(s) >= ++i)
+	while (*s)
 	{
-		if (s[i] != c && index < 0)
-			index = i;
-		else if ((s[i] == c || i == (size_t)ft_strlen(s)) && index >= 0)
+		while (*s && *s == c)
+			s++;
+		if (*s)
 		{
-			split[j] = ft_dup((char *)s, index, i);
-			if (!split[j++])
-				return (free_split(split, j));
-			index = -1;
+			len = next_len(s, c);
+			split[i] = ft_calloc(len + 1, sizeof(char));
+			if (!split[i])
+				return (free_split(split, i));
+			ft_memcpy(split[i++], s, len);
+			s += len;
 		}
 	}
-	split[j] = 0;
 	return (split);
 }

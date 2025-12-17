@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadqi <asadqi@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: asadqi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 12:21:48 by asadqi            #+#    #+#             */
-/*   Updated: 2025/12/17 11:04:21 by asadqi           ###   ########lyon.fr   */
+/*   Updated: 2025/12/17 11:49:17 by asadqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	if (!*little)
 		return ((char *)big);
 	i = 0;
-	while (big && big[i] && i < len)
+	while (big[i] && i < len)
 	{
 		k = 0;
 		while (big[i + k] == little[k] && i + k < len)

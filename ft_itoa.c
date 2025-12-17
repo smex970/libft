@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadqi <asadqi@student.42lyon.fr>          +#+  +:+       +#+        */
+/*   By: asadqi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 19:17:36 by asadqi            #+#    #+#             */
-/*   Updated: 2025/12/17 11:06:07 by asadqi           ###   ########lyon.fr   */
+/*   Updated: 2025/12/17 11:55:47 by asadqi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_len_nb(int n)
+static int	ft_len_nb(int n)
 {
 	int				len;
 	unsigned int	nb;
@@ -34,7 +34,7 @@ int	ft_len_nb(int n)
 	return (len);
 }
 
-char	*fill_str(char *dest, unsigned int nb, int len, int j)
+static char	*fill_str(char *dest, unsigned int nb, int len, int j)
 {
 	unsigned int	i;
 
