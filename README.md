@@ -16,9 +16,12 @@ The primary goal is to deeply understand how these fundamental functions work by
 Compilation
 The library uses a Makefile with the following rules:
 
-make        # Compiles the mandatory part and creates libft.a\n
+make        # Compiles the mandatory part and creates libft.a
+
 make clean  # Removes object files (.o)
+
 make fclean # Removes object files and the library (libft.a)
+
 make re     # Recompiles everything from scratch
 
 Compilation Flags
